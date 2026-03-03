@@ -1,0 +1,60 @@
+section {
+    padding: 64px 32px;
+
+    h2 {
+        font-size: 32px;
+        margin-bottom: 32px;
+    }
+}
+
+#hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    h1 {
+        font-size: 48px;
+        margin-bottom: 16px;
+    }
+}
+
+@media (max-width: 768px) {
+    #hamburger {
+        display: flex !important;
+    }
+
+    #bottom-nav {
+        display: none !important;
+    }
+
+    #scroll-top-btn {
+        bottom: 20px;
+        right: 20px;
+        width: 45px;
+        height: 45px;
+    }
+
+    footer {
+        .footer-bottom {
+            flex-direction: column;
+            gap: 32px;
+        }
+
+        .footer-left {
+            flex-direction: column;
+            gap: 32px;
+        }
+    }
+}
+
+@media (min-width: 769px) {
+    #hamburger {
+        display: none !important;
+    }
+
+    #bottom-nav {
+        display: block !important;
+    }
+}
