@@ -1,0 +1,27 @@
+<?php
+
+namespace Database\Factories;
+
+use Illuminate\Database\Eloquent\Factories\Factory;
+
+class StyleFactory extends Factory
+{
+    /**
+     * Define the model's default state.
+     *
+     * @return array
+     */
+    public function definition()
+    {
+        return [
+            'name' => $this->faker->randomElement([
+                'Chinese Traditional',
+                'Fine Line Minimalist',
+                'Dotwork',
+                'Black and Grey',
+                'American Traditional',
+            ]),
+            'description' => $this->faker->sentence(),
+        ];
+    }
+}
