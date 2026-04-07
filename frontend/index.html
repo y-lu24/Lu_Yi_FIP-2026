@@ -69,8 +69,10 @@
     <section id="about">
         <div class="grid-con">
             <div class="col-span-full">
-                <h2>About</h2>
-                <p>Content coming soon...</p>
+                <h2>About VII INK</h2>
+                <p>VII INK is a premium tattoo studio based in London, Ontario, where Eastern craftsmanship meets Western creativity. The name "VII" — the Roman numeral for seven — represents completeness and the convergence of diverse artistic traditions. We specialize in culturally-rooted custom tattoo art, blending Chinese Traditional, Fine Line Minimalist, Dotwork, Black and Grey, and American Traditional styles into meaningful, one-of-a-kind pieces.</p>
+                <p>Your story. Two traditions. One studio.</p>
+                <a href="contact.html" class="contact-btn primary">Book a Consultation</a>
             </div>
         </div>
     </section>
@@ -98,10 +100,16 @@
             <div v-if="loadingPortfolio" class="col-span-full">
                 <lottie-player src="animations/VII-ink-loader.json" background="transparent" speed="1" loop autoplay></lottie-player>
             </div>
-            <div v-else v-for="image in portfolioData" :key="image.id" class="box col-span-2 m-col-span-3">
-                <img :src="image.image_url" :alt="image.title">
-                <p>{{image.title}}</p>
-                <p>{{image.artist.name}}</p>
+            <div v-else class="col-span-full portfolio-slider">
+                <button @click="prevPage" class="slider-btn">&#8592;</button>
+                <div class="portfolio-grid">
+                    <div v-for="image in getCurrentImages()" :key="image.id" class="box">
+                        <img :src="image.image_url" :alt="image.title">
+                        <p>{{image.title}}</p>
+                        <p>{{image.artist.name}}</p>
+                    </div>
+                </div>
+                <button @click="nextPage" class="slider-btn">&#8594;</button>
             </div>
         </div>
     </section>
@@ -131,8 +139,10 @@
 
                         <div class="info-column">
                             <h3>LOCATION</h3>
-                            <p>London, Ontario</p>
-                            <p>Canada</p>
+                            <a href="https://maps.google.com/?q=London,Ontario,Canada" target="_blank">
+                                <p>London, Ontario</p>
+                                <p>Canada</p>
+                            </a>
                         </div>
 
                         <div class="info-column">
@@ -144,8 +154,8 @@
                         <div class="info-column">
                             <h3>FOLLOW US</h3>
                             <p><a href="#" target="_blank">Instagram</a></p>
-                            <p><a href="#" target="_blank">Facebook</a></p>
                             <p><a href="#" target="_blank">TikTok</a></p>
+                            <p><a href="#" target="_blank">Pinterest</a></p>
                         </div>
 
                     </div>

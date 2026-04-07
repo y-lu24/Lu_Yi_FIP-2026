@@ -11,7 +11,8 @@ const app = Vue.createApp({
             portfolioData: [],
             error: null,
             loadingArtists: true,
-            loadingPortfolio: true
+            loadingPortfolio: true,
+            currentPage: 0
         }
     },
     created() {
@@ -55,6 +56,24 @@ const app = Vue.createApp({
             .finally(() => {
                 this.loadingPortfolio = false;
             });
+        },
+
+        getCurrentImages() {
+            const start = this.currentPage * 4;
+            return this.portfolioData.slice(start, start + 4);
+        },
+
+        prevPage() {
+            if(this.currentPage > 0) {
+                this.currentPage--;
+            }
+        },
+
+        nextPage() {
+            const totalPages = Math.ceil(this.portfolioData.length / 4);
+            if(this.currentPage < totalPages - 1) {
+                this.currentPage++;
+            }
         }
     }
 })
