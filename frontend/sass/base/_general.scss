@@ -10,6 +10,10 @@ body {
     font-family: 'Montserrat', sans-serif;
     color: $color-dark;
     background: $color-light;
+    background-image: url('../images/background.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
 }
 
 h1, h2, h3 {
