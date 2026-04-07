@@ -20,6 +20,13 @@ section {
     }
 }
 
+lottie-player {
+    width: 150px;
+    height: 150px;
+    margin: 0 auto;
+    display: block;
+}
+
 @media (max-width: 768px) {
     #hamburger {
         display: flex !important;
