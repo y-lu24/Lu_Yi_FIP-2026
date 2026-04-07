@@ -10,6 +10,7 @@
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollToPlugin.min.js"></script>
     <script defer src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
     <script type="module" src="js/main.js"></script>
 </head>
 <body>
@@ -78,7 +79,7 @@
         <div class="grid-con">
             <h2 class="col-span-full">Our Artists</h2>
             <div v-if="loadingArtists" class="col-span-full">
-                <p>Loading artists...</p>
+                <lottie-player src="animations/VII-ink-loader.json" background="transparent" speed="1" loop autoplay></lottie-player>
             </div>
             <div v-else-if="error" class="col-span-full">
                 <p>{{error}}</p>
@@ -95,7 +96,7 @@
         <div class="grid-con">
             <h2 class="col-span-full">Portfolio</h2>
             <div v-if="loadingPortfolio" class="col-span-full">
-                <p>Loading portfolio...</p>
+                <lottie-player src="animations/VII-ink-loader.json" background="transparent" speed="1" loop autoplay></lottie-player>
             </div>
             <div v-else v-for="image in portfolioData" :key="image.id" class="box col-span-2 m-col-span-3">
                 <img :src="image.image_url" :alt="image.title">
