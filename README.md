@@ -27,15 +27,15 @@ VS Code, GitHub, SASS, Laravel, MySQL
 Vue.js, GSAP, Fetch API
 
 ## Features 📋 <a id="features"></a>
-  ⚡️ Fully Responsive Design
-  ⚡️ Dynamic Artist Gallery (Fetch API)
-  ⚡️ Portfolio Filtering System
-  ⚡️ AJAX Contact Form
-  ⚡️ User Authentication
-  ⚡️ Image Upload Functionality
-  ⚡️ Laravel Backend API
-  ⚡️ MySQL Database Integration
-  ⚡️ GSAP Scroll Animations
+- ⚡️ Fully Responsive Design
+- ⚡️ Dynamic Artist Gallery (Fetch API)
+- ⚡️ Portfolio Filtering System
+- ⚡️ AJAX Contact Form
+- ⚡️ User Authentication
+- ⚡️ Image Upload Functionality
+- ⚡️ Laravel Backend API
+- ⚡️ MySQL Database Integration
+- ⚡️ GSAP Scroll Animations
 
 ## Installation 📦 <a id="installation"></a>
 To run the backend locally:
