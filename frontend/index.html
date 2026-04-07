@@ -6,24 +6,25 @@
     <title>VII INK - Modern Tattoo Studio</title>
     <link href="css/grid.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollToPlugin.min.js" defer></script>
-    <script src="js/main.js" type="module"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollToPlugin.min.js"></script>
+    <script defer src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script type="module" src="js/main.js"></script>
 </head>
 <body>
     <div id="top-logo">
         <img src="images/logo.png" alt="VII INK">
     </div>
 
-    <button id="hamburger" aria-label="Open navigation menu">
+    <button id="hamburger">
         <span></span>
         <span></span>
         <span></span>
     </button>
 
     <div id="menu" class="overlay">
-        <button id="close" aria-label="Close menu">&times;</button>
+        <button id="close">&times;</button>
         <nav>
             <ul>
                 <li><a href="#about">About</a></li>
@@ -45,9 +46,7 @@
 
     <nav id="bottom-nav">
         <div class="nav-container">
-            <div class="nav-logo">
-                
-            </div>
+            <div class="nav-logo"></div>
             <div class="nav-links">
                 <a href="#about" class="nav-link">About</a>
                 <a href="#artists" class="nav-link">Artists</a>
@@ -57,14 +56,14 @@
         </div>
     </nav>
 
-    <button id="scroll-top-btn" aria-label="Scroll to top">
+    <button id="scroll-top-btn">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
             <path d="M12 19V5M12 5L5 12M12 5L19 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
     </button>
 
     <main>
-
+    <div id="app">
 
     <section id="about">
         <div class="grid-con">
@@ -75,47 +74,33 @@
         </div>
     </section>
 
-
     <section id="artists">
         <div class="grid-con">
             <h2 class="col-span-full">Our Artists</h2>
-            
-
-            <div class="box col-span-full m-col-span-4">
-                <h3>Artist 1</h3>
-                <p>Bio coming soon</p>
+            <div v-if="loadingArtists" class="col-span-full">
+                <p>Loading artists...</p>
             </div>
-
-
-            <div class="box col-span-full m-col-span-4">
-                <h3>Artist 2</h3>
-                <p>Bio coming soon</p>
+            <div v-else-if="error" class="col-span-full">
+                <p>{{error}}</p>
             </div>
-
-
-            <div class="box col-span-full m-col-span-4">
-                <h3>Artist 3</h3>
-                <p>Bio coming soon</p>
+            <div v-else v-for="artist in artistsData" :key="artist.id" class="box col-span-full m-col-span-4">
+                <h3>{{artist.name}}</h3>
+                <p>{{artist.specialty_styles}}</p>
+                <p>{{artist.bio}}</p>
             </div>
         </div>
     </section>
 
-
     <section id="portfolio">
         <div class="grid-con">
             <h2 class="col-span-full">Portfolio</h2>
-            
-            <div class="box col-span-2 m-col-span-3">
-                <p>Image 1</p>
+            <div v-if="loadingPortfolio" class="col-span-full">
+                <p>Loading portfolio...</p>
             </div>
-            <div class="box col-span-2 m-col-span-3">
-                <p>Image 2</p>
-            </div>
-            <div class="box col-span-2 m-col-span-3">
-                <p>Image 3</p>
-            </div>
-            <div class="box col-span-2 m-col-span-3">
-                <p>Image 4</p>
+            <div v-else v-for="image in portfolioData" :key="image.id" class="box col-span-2 m-col-span-3">
+                <img :src="image.image_url" :alt="image.title">
+                <p>{{image.title}}</p>
+                <p>{{image.artist.name}}</p>
             </div>
         </div>
     </section>
@@ -129,21 +114,20 @@
         </div>
     </section>
 
+    </div>
     </main>
 
     <footer id="contact-section">
         <div class="grid-con">
             <div class="col-span-full footer-content">
-                
-                <div class="footer-logo">
 
-                </div>
-                
+                <div class="footer-logo"></div>
+
                 <p class="footer-intro">Ready to start your tattoo journey?<br>Contact us to book your consultation.</p>
-                
+
                 <div class="footer-bottom">
                     <div class="footer-left">
-                        
+
                         <div class="info-column">
                             <h3>LOCATION</h3>
                             <p>London, Ontario</p>
@@ -164,13 +148,13 @@
                         </div>
 
                     </div>
-                    
+
                     <div class="footer-right">
-                        <a href="tel:+12230098877" class="contact-btn">+1 (223) 009-8877</a>
+                        <a href="tel:+12345678900" class="contact-btn">+1 (234) 567-8900</a>
                         <a href="contact.html" class="contact-btn primary">Book Consultation</a>
                     </div>
                 </div>
-                
+
                 <p class="copyright">© 2026 VII INK. All rights reserved.</p>
             </div>
         </div>
