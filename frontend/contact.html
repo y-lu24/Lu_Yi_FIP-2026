@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0, width=device-width">
+    <title>VII INK - Contact</title>
+    <link href="css/grid.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+    <script defer src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script type="module" src="js/contact.js"></script>
+</head>
+<body>
+    <div id="top-logo">
+        <img src="images/logo.png" alt="VII INK">
+    </div>
+
+    <button id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <div id="menu" class="overlay">
+        <button id="close">&times;</button>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#artists">Artists</a></li>
+                <li><a href="index.html#portfolio">Portfolio</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <main>
+    <div id="app">
+        <section id="contact">
+            <div class="grid-con">
+                <div class="col-span-full m-col-start-3 m-col-end-11">
+                    <h2>Contact Us</h2>
+                    <p>Tell us about your tattoo idea and we will get back to you.</p>
+
+                    <form id="contactForm" @submit.prevent="submitForm">
+                        <label for="name">Name</label>
+                        <p class="field-error" v-if="errors.name">{{errors.name}}</p>
+                        <input type="text" id="name" v-model="formData.name">
+
+                        <label for="email">Email</label>
+                        <p class="field-error" v-if="errors.email">{{errors.email}}</p>
+                        <input type="email" id="email" v-model="formData.email">
+
+                        <label for="phone">Phone (optional)</label>
+                        <input type="text" id="phone" v-model="formData.phone">
+
+                        <label for="message">Message</label>
+                        <p class="field-error" v-if="errors.message">{{errors.message}}</p>
+                        <textarea id="message" v-model="formData.message"></textarea>
+
+                        <button type="submit">{{buttonText}}</button>
+
+                        <p class="field-error" v-if="errors.general">{{errors.general}}</p>
+                        <div v-if="responseMessage">{{responseMessage}}</div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+    </main>
+
+    <footer id="contact-section">
+        <div class="grid-con">
+            <div class="col-span-full footer-content">
+                <p class="copyright">© 2026 VII INK. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
