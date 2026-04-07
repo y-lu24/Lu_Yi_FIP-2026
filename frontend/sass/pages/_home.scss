@@ -1,22 +1,154 @@
+@use '../abstracts' as *;
+
 section {
-    padding: 64px 32px;
+    padding: 80px 32px;
 
     h2 {
         font-size: 32px;
         margin-bottom: 32px;
+        color: $color-dark;
     }
 }
 
 #hero {
-    min-height: 100vh;
+    min-height: 900px;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
+    background: $color-warm-white;
 
     h1 {
-        font-size: 48px;
+        font-size: 80px;
+        font-weight: 600;
+        letter-spacing: 8px;
+        color: $color-dark;
         margin-bottom: 16px;
+    }
+
+    p {
+        font-size: 16px;
+        letter-spacing: 4px;
+        color: $color-bronze-gold;
+        text-transform: uppercase;
+    }
+}
+
+#about {
+    background: $color-stone-grey;
+    text-align: center;
+
+    h2 {
+        color: $color-warm-white;
+    }
+
+    p {
+        color: $color-warm-white;
+        max-width: 800px;
+        margin: 0 auto 24px;
+        font-size: 16px;
+    }
+
+    .contact-btn {
+        display: inline-block;
+        padding: 14px 32px;
+        background: transparent;
+        color: $color-warm-white;
+        border: 1px solid $color-warm-white;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        font-size: 13px;
+        margin-top: 16px;
+
+        &:hover {
+            background: $color-warm-white;
+            color: $color-dark;
+        }
+    }
+}
+
+#artists {
+    background: $color-warm-white;
+
+    h2 {
+        color: $color-dark;
+    }
+
+    .box {
+        background: white;
+        border: 1px solid rgba(0,0,0,0.08);
+        padding: 32px;
+
+        h3 {
+            font-size: 18px;
+            color: $color-bronze-gold;
+            margin-bottom: 8px;
+        }
+
+        p {
+            color: $color-stone-grey;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+    }
+}
+
+#portfolio {
+    background: $color-stone-grey;
+
+    h2 {
+        color: $color-warm-white;
+    }
+
+    .portfolio-slider {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+    }
+
+    .portfolio-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
+        flex: 1;
+    }
+
+    .box {
+        background: $color-dark;
+        overflow: hidden;
+
+        img {
+            width: 100%;
+            aspect-ratio: 1;
+            object-fit: cover;
+            display: block;
+        }
+
+        p {
+            padding: 8px 12px;
+            font-size: 13px;
+            color: $color-warm-white;
+        }
+    }
+
+    .slider-btn {
+        background: $color-dark;
+        color: $color-warm-white;
+        border: none;
+        width: 44px;
+        height: 44px;
+        font-size: 20px;
+        cursor: pointer;
+        flex-shrink: 0;
+
+        &:hover {
+            background: $color-bronze-gold;
+        }
+
+        &:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
     }
 }
 
@@ -41,6 +173,12 @@ lottie-player {
         right: 20px;
         width: 45px;
         height: 45px;
+    }
+
+    #portfolio {
+        .portfolio-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
     }
 
     footer {

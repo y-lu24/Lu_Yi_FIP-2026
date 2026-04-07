@@ -1,3 +1,8 @@
-$color-primary: #808080;
-$color-dark: #1A1A1D;
-$color-light: #F5F5F0;
+$color-ink-black: #1A1A1A;
+$color-bronze-gold: #B8860B;
+$color-warm-white: #F5F5F0;
+$color-stone-grey: #666666;
+
+$color-dark: $color-ink-black;
+$color-primary: $color-bronze-gold;
+$color-light: $color-warm-white;
