@@ -30,7 +30,7 @@ Vue.js, GSAP, Fetch API
   ⚡️ Fully Responsive Design
   ⚡️ Dynamic Artist Gallery (Fetch API)
   ⚡️ Portfolio Filtering System
-  ⚡️ PHP/AJAX Contact Form
+  ⚡️ AJAX Contact Form
   ⚡️ User Authentication
   ⚡️ Image Upload Functionality
   ⚡️ Laravel Backend API
@@ -38,11 +38,17 @@ Vue.js, GSAP, Fetch API
   ⚡️ GSAP Scroll Animations
 
 ## Installation 📦 <a id="installation"></a>
-To run the portfolio locally:
+To run the backend locally:
 
 - Clone this repository
-- Navigate into the project directory:
-- Open the index.html file in your browser, or if using a local server, start the server and navigate to localhost to view.
+- Navigate to the backend folder: `cd backend`
+- Install dependencies: `composer install`
+- Copy the environment file: `cp .env.example .env`
+- Generate application key: `php artisan key:generate`
+- Create a MySQL database named `vii_ink` and update `.env` with your credentials
+- Run migrations and seed: `php artisan migrate:fresh --seed`
+- Start the server: `php artisan serve`
+- API available at `http://localhost:8000/api`
 
 ## Contact 📧 <a id="contact"></a>
 Feel free to reach out!
