@@ -2,18 +2,24 @@
 
 footer {
     background: $color-dark;
-    color: $color-light;
-    padding: 32px;
+    color: $color-warm-white;
+    padding: 48px 32px;
 
     .footer-content {
         max-width: 1200px;
         margin: 0 auto;
     }
 
+    .footer-intro {
+        color: $color-warm-white;
+        margin-bottom: 48px;
+    }
+
     .footer-bottom {
         display: flex;
         justify-content: space-between;
-        margin: 32px 0;
+        align-items: flex-start;
+        margin-bottom: 48px;
     }
 
     .footer-left {
@@ -23,20 +29,21 @@ footer {
 
     .info-column {
         h3 {
-            font-size: 14px;
+            font-size: 13px;
+            letter-spacing: 2px;
+            color: $color-warm-white;
             margin-bottom: 16px;
         }
 
-        p {
+        p, a {
+            color: rgba(245, 245, 240, 0.7);
+            font-size: 14px;
             margin: 8px 0;
+            display: block;
+            text-decoration: none;
 
-            a {
-                color: $color-light;
-                text-decoration: none;
-
-                &:hover {
-                    color: $color-primary;
-                }
+            &:hover {
+                color: $color-bronze-gold;
             }
         }
     }
@@ -45,31 +52,41 @@ footer {
         display: flex;
         flex-direction: column;
         gap: 16px;
+        min-width: 200px;
+        margin-left: 48px;
 
         .contact-btn {
             display: inline-block;
-            color: $color-light;
+            color: $color-warm-white;
             text-decoration: none;
             padding: 12px 24px;
-            border: 1px solid $color-light;
-            border-radius: 5px;
+            border: 1px solid $color-warm-white;
             text-align: center;
+            font-size: 14px;
 
             &:hover {
-                background: $color-light;
+                background: $color-warm-white;
                 color: $color-dark;
             }
 
             &.primary {
-                background: $color-primary;
-                border-color: $color-primary;
+                background: $color-bronze-gold;
+                border-color: $color-bronze-gold;
                 color: $color-dark;
 
                 &:hover {
                     background: transparent;
-                    color: $color-primary;
+                    color: $color-bronze-gold;
                 }
             }
         }
+    }
+
+    .copyright {
+        text-align: center;
+        color: rgba(245, 245, 240, 0.5);
+        font-size: 13px;
+        border-top: 1px solid rgba(245, 245, 240, 0.1);
+        padding-top: 24px;
     }
 }
