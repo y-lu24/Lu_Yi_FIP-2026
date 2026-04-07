@@ -1,0 +1,74 @@
+@use '../abstracts' as *;
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 32px;
+
+    label {
+        font-size: 13px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: $color-dark;
+        margin-top: 16px;
+    }
+
+    input, textarea {
+        padding: 12px 16px;
+        border: 1px solid rgba(0,0,0,0.15);
+        background: white;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 14px;
+        color: $color-dark;
+        outline: none;
+
+        &:focus {
+            border-color: $color-bronze-gold;
+        }
+    }
+
+    textarea {
+        min-height: 150px;
+        resize: vertical;
+    }
+
+    button[type="submit"] {
+        margin-top: 40px;
+        padding: 14px 32px;
+        background: $color-dark;
+        color: $color-warm-white;
+        border: none;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 13px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        cursor: pointer;
+        align-self: center;
+
+        &:hover {
+            background: $color-bronze-gold;
+        }
+    }
+
+    .field-error {
+        color: $color-bronze-gold;
+        font-size: 13px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        margin: 4px 0;
+        border-left: 2px solid $color-bronze-gold;
+        padding-left: 8px;
+    }
+
+    .response-message {
+        margin-top: 16px;
+        padding: 16px 24px;
+        border: 1px solid $color-bronze-gold;
+        color: $color-dark;
+        font-size: 13px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        text-align: center;
+}
+}

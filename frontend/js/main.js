@@ -1,8 +1,21 @@
 import { burgerMenu } from './modules/burger-menu.js';
 import { bottomNav } from './modules/bottom-nav.js';
+import { scrollTop } from './modules/scroll-top.js';
+import { smoothScroll } from './modules/smooth-scroll.js';
 
 burgerMenu();
 bottomNav();
+scrollTop();
+smoothScroll();
+
+const emptyForm = function() {
+    return {
+        name: '',
+        email: '',
+        phone: '',
+        message: ''
+    }
+}
 
 const app = Vue.createApp({
     data() {
@@ -12,7 +25,12 @@ const app = Vue.createApp({
             error: null,
             loadingArtists: true,
             loadingPortfolio: true,
-            currentPage: 0
+            currentPage: 0,
+            selectedImage: null,
+            formData: emptyForm(),
+            responseMessage: '',
+            errors: {},
+            buttonText: 'Send Message'
         }
     },
     created() {
@@ -74,6 +92,42 @@ const app = Vue.createApp({
             if(this.currentPage < totalPages - 1) {
                 this.currentPage++;
             }
+        },
+
+        openLightbox(image) {
+            this.selectedImage = image;
+        },
+
+        closeLightbox() {
+            this.selectedImage = null;
+        },
+
+        submitForm() {
+            fetch('http://127.0.0.1:8000/api/contact', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: new URLSearchParams(this.formData)
+            })
+            .then(res => res.json())
+            .then(data => {
+                if(data.errors) {
+                    this.errors = data.errors;
+                    this.responseMessage = '';
+                    return;
+                }
+                this.errors = {};
+                this.responseMessage = data.message;
+                this.formData = emptyForm();
+            })
+            .catch(err => {
+                console.log(err);
+                this.errors = {
+                    general: 'Something went wrong. Please try again later.'
+                };
+                this.responseMessage = '';
+            });
         }
     }
 })

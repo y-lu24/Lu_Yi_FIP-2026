@@ -103,10 +103,10 @@
             <div v-else class="col-span-full portfolio-slider">
                 <button @click="prevPage" class="slider-btn">&#8592;</button>
                 <div class="portfolio-grid">
-                    <div v-for="image in getCurrentImages()" :key="image.id" class="box">
+                    <div v-for="image in getCurrentImages()" :key="image.id" class="box" @click="openLightbox(image)">
                         <img :src="image.image_url" :alt="image.title">
-                        <p>{{image.title}}</p>
                         <p>{{image.artist.name}}</p>
+                        <p>{{image.completion_date}}</p>
                     </div>
                 </div>
                 <button @click="nextPage" class="slider-btn">&#8594;</button>
@@ -114,14 +114,45 @@
         </div>
     </section>
 
-    <section id="contact">
-        <div class="grid-con">
-            <div class="col-span-full">
-                <h2>Contact</h2>
-                <p>Contact form coming soon...</p>
-            </div>
+<section id="contact">
+    <div class="grid-con">
+        <div class="col-span-full m-col-start-3 m-col-end-11">
+            <h2>Contact Us</h2>
+            <p>Tell us about your tattoo idea and we will get back to you.</p>
+
+            <form id="contactForm" @submit.prevent="submitForm">
+                <label for="name">Name</label>
+                <p class="field-error" v-if="errors.name">{{errors.name}}</p>
+                <input type="text" id="name" v-model="formData.name">
+
+                <label for="email">Email</label>
+                <p class="field-error" v-if="errors.email">{{errors.email}}</p>
+                <input type="email" id="email" v-model="formData.email">
+
+                <label for="phone">Phone (optional)</label>
+                <input type="text" id="phone" v-model="formData.phone">
+
+                <label for="message">Message</label>
+                <p class="field-error" v-if="errors.message">{{errors.message}}</p>
+                <textarea id="message" v-model="formData.message"></textarea>
+
+                <button type="submit">{{buttonText}}</button>
+
+                <p class="field-error" v-if="errors.general">{{errors.general}}</p>
+                <div v-if="responseMessage" class="response-message">{{responseMessage}}</div>
+            </form>
         </div>
-    </section>
+    </div>
+</section>
+
+    <div v-if="selectedImage" class="lightbox" @click="closeLightbox()">
+        <div class="lightbox-content" @click.stop>
+            <button class="lightbox-close" @click="closeLightbox()">&times;</button>
+            <img :src="selectedImage.image_url" :alt="selectedImage.title">
+            <p>{{selectedImage.title}}</p>
+            <p>{{selectedImage.artist.name}}</p>
+        </div>
+    </div>
 
     </div>
     </main>

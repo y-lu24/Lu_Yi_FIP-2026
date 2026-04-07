@@ -7,6 +7,12 @@ export function burgerMenu() {
     function toggleMenu() {
         if (menu) {
             menu.classList.toggle("open");
+
+            if (menu.classList.contains("open")) {
+                hamburger.classList.add('hidden');
+            } else {
+                hamburger.classList.remove('hidden');
+            }
         }
     }
 
