@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             PortfolioImageSeeder::class,
             ConsultationSeeder::class,
             ContactMessageSeeder::class,
+            UserSeeder::class,
         ]);
     }
 }

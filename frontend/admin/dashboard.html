@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0, width=device-width">
+    <title>VII INK - Admin Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="../css/grid.css" rel="stylesheet">
+    <link href="../css/main.css" rel="stylesheet">
+    <script defer src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script type="module" src="js/dashboard.js"></script>
+</head>
+<body>
+<div id="app">
+
+    <div class="admin-header">
+        <h1>VII INK — Admin</h1>
+        <div class="admin-tabs">
+            <button @click="currentTab = 'artists'" :class="{active: currentTab === 'artists'}">Artists</button>
+            <button @click="currentTab = 'portfolio'" :class="{active: currentTab === 'portfolio'}">Portfolio</button>
+            <button @click="currentTab = 'messages'" :class="{active: currentTab === 'messages'}">Messages</button>
+            <button @click="currentTab = 'consultations'" :class="{active: currentTab === 'consultations'}">Consultations</button>
+        </div>
+        <button class="logout-btn" @click="logout">Logout</button>
+    </div>
+
+    <!-- ARTISTS -->
+    <div v-if="currentTab === 'artists'" class="admin-container">
+        <div class="admin-form">
+            <h2>{{editingArtist ? 'Edit Artist' : 'Add New Artist'}}</h2>
+            <form @submit.prevent="submitArtist">
+                <label>Name</label>
+                <input type="text" v-model="artistForm.name">
+                <label>Bio</label>
+                <textarea v-model="artistForm.bio"></textarea>
+                <label>Specialty Styles</label>
+                <input type="text" v-model="artistForm.specialty_styles">
+                <label>Instagram Handle</label>
+                <input type="text" v-model="artistForm.instagram_handle">
+                <label>Profile Image URL</label>
+                <input type="text" v-model="artistForm.profile_image_url">
+                <button type="submit">{{editingArtist ? 'Update Artist' : 'Add Artist'}}</button>
+                <button type="button" v-if="editingArtist" @click="cancelArtistEdit">Cancel</button>
+                <p v-if="artistMessage">{{artistMessage}}</p>
+            </form>
+        </div>
+        <div class="admin-list">
+            <h2>All Artists</h2>
+            <div v-if="loadingArtists"><p>Loading...</p></div>
+            <div v-else v-for="artist in artistsData" :key="artist.id" class="admin-item">
+                <div>
+                    <h3>{{artist.name}}</h3>
+                    <p>{{artist.specialty_styles}}</p>
+                    <p>{{artist.bio}}</p>
+                </div>
+                <div class="admin-actions">
+                    <button @click="editArtist(artist)">Edit</button>
+                    <button @click="deleteArtist(artist.id)">Deactivate</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PORTFOLIO -->
+    <div v-if="currentTab === 'portfolio'" class="admin-container">
+        <div class="admin-form">
+            <h2>{{editingImage ? 'Edit Image' : 'Add New Image'}}</h2>
+            <form @submit.prevent="submitImage">
+                <label>Title</label>
+                <input type="text" v-model="imageForm.title">
+                <label>Image URL</label>
+                <input type="text" v-model="imageForm.image_url">
+                <label>Artist</label>
+                <select v-model="imageForm.artist_id">
+                    <option v-for="artist in artistsData" :key="artist.id" :value="artist.id">{{artist.name}}</option>
+                </select>
+                <label>Completion Date</label>
+                <input type="date" v-model="imageForm.completion_date">
+                <label>Description</label>
+                <textarea v-model="imageForm.description"></textarea>
+                <button type="submit">{{editingImage ? 'Update Image' : 'Add Image'}}</button>
+                <button type="button" v-if="editingImage" @click="cancelImageEdit">Cancel</button>
+                <p v-if="imageMessage">{{imageMessage}}</p>
+            </form>
+        </div>
+        <div class="admin-list">
+            <h2>All Portfolio Images</h2>
+            <div v-if="loadingPortfolio"><p>Loading...</p></div>
+            <div v-else v-for="image in portfolioData" :key="image.id" class="admin-item">
+                <div>
+                    <img :src="image.image_url" :alt="image.title" style="width:80px;height:80px;object-fit:cover;">
+                    <h3>{{image.title}}</h3>
+                    <p>{{image.artist.name}}</p>
+                </div>
+                <div class="admin-actions">
+                    <button @click="editImage(image)">Edit</button>
+                    <button @click="deleteImage(image.id)">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MESSAGES -->
+    <div v-if="currentTab === 'messages'" class="admin-container full-width">
+        <div class="admin-list">
+            <h2>All Messages</h2>
+            <div v-if="loadingMessages"><p>Loading...</p></div>
+            <div v-else v-for="msg in messagesData" :key="msg.id" class="admin-item">
+                <div>
+                    <h3>{{msg.name}}</h3>
+                    <p>{{msg.email}}</p>
+                    <p>{{msg.message}}</p>
+                    <p>Status: {{msg.status}}</p>
+                </div>
+                <div class="admin-actions">
+                    <button @click="updateMessageStatus(msg.id, 'read')">Mark Read</button>
+                    <button @click="updateMessageStatus(msg.id, 'resolved')">Resolve</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONSULTATIONS -->
+    <div v-if="currentTab === 'consultations'" class="admin-container full-width">
+        <div class="admin-list">
+            <h2>All Consultations</h2>
+            <div v-if="loadingConsultations"><p>Loading...</p></div>
+            <div v-else v-for="con in consultationsData" :key="con.id" class="admin-item">
+                <div>
+                    <h3>{{con.preferred_date}}</h3>
+                    <p>Status: {{con.status}}</p>
+                    <p>{{con.notes}}</p>
+                </div>
+                <div class="admin-actions">
+                    <button @click="updateConsultationStatus(con.id, 'confirmed')">Confirm</button>
+                    <button @click="updateConsultationStatus(con.id, 'cancelled')">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

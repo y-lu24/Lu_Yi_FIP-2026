@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0, width=device-width">
+    <title>VII INK - Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="css/grid.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+    <script defer src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script type="module" src="js/login.js"></script>
+</head>
+<body>
+<div id="app">
+
+    <nav class="back-nav">
+        <a href="index.html">← Back to Home</a>
+    </nav>
+
+    <section id="login">
+        <div class="grid-con">
+            <div class="form-container col-span-4 m-col-span-6 m-col-start-4">
+                <h1>Login</h1>
+                <form @submit.prevent="submitLogin">
+                    <label>Email</label>
+                    <input type="email" v-model="form.email" placeholder="your@email.com">
+
+                    <label>Password</label>
+                    <input type="password" v-model="form.password" placeholder="Password">
+
+                    <button type="submit" :disabled="loading">
+                        {{ loading ? 'Logging in...' : 'Login' }}
+                    </button>
+                    <p v-if="errorMessage" class="error-message">{{ errorMessage }}</p>
+                </form>
+                <p class="form-link">Don't have an account? <a href="register.html">Register</a></p>
+            </div>
+        </div>
+    </section>
+
+</div>
+</body>
+</html>

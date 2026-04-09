@@ -1,5 +1,64 @@
 @use '../abstracts' as *;
 
+.back-nav {
+    padding: 24px 32px;
+
+    a {
+        color: $color-dark;
+        font-size: 14px;
+        font-family: 'Montserrat', sans-serif;
+        text-decoration: none;
+        letter-spacing: 0.05em;
+
+        &:hover {
+            color: $color-bronze-gold;
+        }
+    }
+}
+
+.form-container {
+    padding: 48px 0;
+
+    h1 {
+        font-size: 32px;
+        color: $color-dark;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+    }
+
+    .form-link {
+        margin-top: 24px;
+        font-size: 13px;
+        color: $color-stone-grey;
+
+        a {
+            color: $color-bronze-gold;
+            text-decoration: none;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+}
+
+.error-message {
+    color: red;
+    font-size: 13px;
+    margin: 4px 0;
+}
+
+.success-message {
+    margin-top: 16px;
+    padding: 16px 24px;
+    border: 1px solid $color-bronze-gold;
+    color: $color-dark;
+    font-size: 13px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-align: center;
+}
+
 form {
     display: flex;
     flex-direction: column;
@@ -70,5 +129,5 @@ form {
         letter-spacing: 1px;
         text-transform: uppercase;
         text-align: center;
-}
+    }
 }
