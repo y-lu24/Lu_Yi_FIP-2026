@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0, width=device-width">
+    <title>VII INK - Admin Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="../css/grid.css" rel="stylesheet">
+    <link href="../css/main.css" rel="stylesheet">
+    <script defer src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script type="module" src="js/login.js"></script>
+</head>
+<body>
+<div id="app">
+
+    <div class="admin-header">
+        <h1>VII INK — Admin</h1>
+    </div>
+
+    <div class="admin-container admin-login">
+        <div class="admin-form">
+            <h2>Admin Login</h2>
+            <form @submit.prevent="submitLogin">
+                <label>Email</label>
+                <input type="email" v-model="form.email" placeholder="admin@viiink.com">
+                <label>Password</label>
+                <input type="password" v-model="form.password" placeholder="Password">
+                <button type="submit" :disabled="loading">
+                    {{ loading ? 'Logging in...' : 'Login' }}
+                </button>
+                <p v-if="errorMessage" class="error-message">{{ errorMessage }}</p>
+            </form>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

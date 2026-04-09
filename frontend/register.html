@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0, width=device-width">
+    <title>VII INK - Register</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="css/grid.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+    <script defer src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script type="module" src="js/register.js"></script>
+</head>
+<body>
+<div id="app">
+
+    <nav class="back-nav">
+        <a href="index.html">← Back to Home</a>
+    </nav>
+
+    <section id="register">
+        <div class="grid-con">
+            <div class="form-container col-span-4 m-col-span-6 m-col-start-4">
+                <h1>Register</h1>
+                <form @submit.prevent="submitRegister">
+                    <label>Name</label>
+                    <input type="text" v-model="form.name" placeholder="Your Name">
+                    <p v-if="errors.name" class="error-message">{{ errors.name[0] }}</p>
+
+                    <label>Email</label>
+                    <input type="email" v-model="form.email" placeholder="your@email.com">
+                    <p v-if="errors.email" class="error-message">{{ errors.email[0] }}</p>
+
+                    <label>Password</label>
+                    <input type="password" v-model="form.password" placeholder="Password">
+                    <p v-if="errors.password" class="error-message">{{ errors.password[0] }}</p>
+
+                    <label>Confirm Password</label>
+                    <input type="password" v-model="form.password_confirmation" placeholder="Confirm Password">
+
+                    <button type="submit" :disabled="loading">
+                        {{ loading ? 'Registering...' : 'Register' }}
+                    </button>
+                    <p v-if="responseMessage" class="success-message">{{ responseMessage }}</p>
+                </form>
+                <p class="form-link">Already have an account? <a href="login.html">Login</a></p>
+            </div>
+        </div>
+    </section>
+
+</div>
+</body>
+</html>

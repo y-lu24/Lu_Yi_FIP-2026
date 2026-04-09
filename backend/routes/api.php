@@ -11,16 +11,6 @@ use App\Http\Controllers\Admin\AdminPortfolioController;
 use App\Http\Controllers\Admin\ConsultationController;
 use App\Http\Controllers\Admin\MessageController;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Routes for the VII INK public API. These endpoints serve artist profiles,
-| portfolio images, and contact form submissions to the frontend.
-|
-*/
-
 // Public routes
 Route::get('/artists', [ArtistController::class, 'index']);
 Route::get('/artists/{id}', [ArtistController::class, 'show']);
@@ -30,12 +20,17 @@ Route::get('/portfolio/{id}', [PortfolioController::class, 'show']);
 
 Route::post('/contact', [ContactController::class, 'store']);
 
+// Customer auth routes
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/logout', [AuthController::class, 'logout']);
+Route::post('/register', [AuthController::class, 'register']);
+
 // Admin auth routes
 Route::post('/admin/login', [AuthController::class, 'login']);
 Route::post('/admin/logout', [AuthController::class, 'logout']);
 
-// Admin protected routes
-Route::middleware('auth:sanctum')->prefix('admin')->group(function () {
+// Admin routes
+Route::prefix('admin')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index']);
 
     Route::get('/artists', [AdminArtistController::class, 'index']);
